@@ -8,55 +8,54 @@ import android.support.v4.app.NavUtils;
 import android.view.MenuItem;
 import android.widget.TextView;
 
+//Ejemplo de actividad sencilla que recupera informacion del intent
 public class DisplayMessageActivity extends Activity {
 
-	@SuppressLint("NewApi")
+	//Sobreescribir onCreate para cargar vista y configurar activity
+	@SuppressLint("NewApi") 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
-//		setContentView(R.layout.activity_display_message);
-		// Show the Up button in the action bar.
-		// Get the message from the intent
-	    Intent intent = getIntent();
-	    String message = intent.getStringExtra(MainActivity.EXTRA_MESSAGE);
 
-	    // Create the text view
-	    TextView textView = new TextView(this);
-	    textView.setTextSize(40);
-	    textView.setText(message);
+		// Obtener el mensaje del intent que inicio el activity
+		Intent intent = getIntent();
+		String message = intent.getStringExtra(MainActivity.EXTRA_MESSAGE);
 
-	    // Set the text view as the activity layout
-	    setContentView(textView);
+		// Crear un campo text view e inicializarlo con el mensaje del intent
+		TextView textView = new TextView(this);
+		textView.setTextSize(40);
+		textView.setText(message);
 
-		
+		// Establecer el text view como el layout del activity
+		setContentView(textView);
+
+		//Configurar action bar
 		setupActionBar();
-		
-		
 	}
 
 	/**
-	 * Set up the {@link android.app.ActionBar}.
+	 * Configurar Action Bar
 	 */
 	private void setupActionBar() {
 
+		//Activar el boton de navegacion Arriba (Up)
 		getActionBar().setDisplayHomeAsUpEnabled(true);
 
 	}
 
+	//Sobreescribir onOptionsItemSelected para capturar la seleccion de acciones en el Action Bar
 	@Override
 	public boolean onOptionsItemSelected(MenuItem item) {
+
+		//Identificar que accion se ha elegido en base a su id
 		switch (item.getItemId()) {
-		case android.R.id.home:
-			// This ID represents the Home or Up button. In the case of this
-			// activity, the Up button is shown. Use NavUtils to allow users
-			// to navigate up one level in the application structure. For
-			// more details, see the Navigation pattern on Android Design:
-			//
-			// http://developer.android.com/design/patterns/navigation.html#up-vs-back
-			//
-			NavUtils.navigateUpFromSameTask(this);
+
+			case android.R.id.home: //id del sistema que identifica el boton Arriba (Up)
+			// Navegar siguiendo la jerarquia definida entre actividades
+				NavUtils.navigateUpFromSameTask(this);
 			return true;
 		}
+		
 		return super.onOptionsItemSelected(item);
 	}
 

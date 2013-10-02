@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android" >
+
+    <EditTextPreference
+        android:key="username"
+        android:summary="Provide a valid username"
+        android:title="User name" />
+
+    <CheckBoxPreference
+        android:key="connected"
+        android:summary="Persistent connection"
+        android:title="keep connected" />
+
+    <ListPreference
+        android:defaultValue="1"
+        android:entries="@array/colors"
+        android:entryValues="@array/colorValues"
+        android:key="color"
+        android:summary="User preferred color"
+        android:title="Choose a color" />
+
+</PreferenceScreen>
